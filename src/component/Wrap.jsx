@@ -3,7 +3,8 @@
 const Wrap = ({children}) => {
   const style1 = {
     width : '360px',
-    height : '640px'
+    height : '640px',
+    position: 'relative'
    , background :  "#FFC125" 
   }
 
