@@ -8,7 +8,7 @@ const Logout = () =>{
     const navigate = useNavigate();
     const onLogOut = () =>{
         authService.signOut();
-        navigate('/');
+        
     
     };
 

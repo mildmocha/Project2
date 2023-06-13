@@ -26,7 +26,7 @@ const LoginButton = ()=> {
         
         <div className={classes.shadow2} >
         <button className={classes.loginbtn} onClick={handleGoogleLogin} > Login </button>
-        {userData ? userData.displayName : null}
+      {userData ? userData.displayName : null}
         </div>
         
     )

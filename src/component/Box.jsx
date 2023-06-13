@@ -14,7 +14,7 @@ export default function Box({text,Menu,link }){
 return (
  <div className={classes.shadow}>
       <div className={classes.nemo}>
-            {Menu ? ( <a href= "{link}"><span style={styleMenu} >{text}</span></a>)
+            {Menu ? ( <span style={styleMenu} >{text}</span>)
             : (
                   <span style={styleBoard}>{text}</span>
             )}

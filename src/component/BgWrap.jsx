@@ -1,11 +1,11 @@
 import { Children } from "react"
 import Bg from "../img/BGIMG.jpg"
 import classes from "./BgWrap.module.css"
-function BgWrap ({Children}) {
+const BgWrap = ({children}) => {
     return(
         <>
         <div className={classes.BgWrap}>
-            {Children}
+            {children}
         </div>
         </>
     )

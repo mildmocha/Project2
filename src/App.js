@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import LoginSub from "./component/LoginSub";
 import Main from "./component/Main";
+import StartQuiz from "./component/StartQuiz";
 function App() {
   return (
     <>
@@ -21,7 +22,9 @@ function App() {
       <Routes>
         <Route path="/loginSub" element={<LoginSub />} />
       </Routes>
-    
+        <Routes>
+          <Route path="/StartQuiz" element={<StartQuiz/> }></Route>
+        </Routes>
       </BrowserRouter>
     </>
   );
