@@ -4,21 +4,22 @@ import MainImg from "../img/25701.jpg";
 import Login from "./Login";
 import SignIn from "./SignIn";
 import { BrowserRouter as Router, Link } from "react-router-dom";
-
-import BgWrap from "./BgWrap";
+import classes from "./Main.module.css"
+import mainImg2 from "../img/Banner2.png"
 import LoginCurrent from "./LoginCurrent";
-import QuizBoard from "./QuizBoard";
-import StartQuiz from "./StartQuiz";
 
 function Main() {
+  const style1={
   
-
+    Width :'100%'
+  }
   const isLogin = LoginCurrent();
   return (
-    <>
+    <main className={classes.Main} style={style1}>
+      
       <Wrap>
-        <img className="mainImg" src={MainImg} />
-        
+      <img src= {MainImg} className='mainImg'/> 
+        <img src ={mainImg2} className="mainImg2"/>
         <Link to="/StartQuiz">
           
           <Box text="START" Menu />
@@ -36,8 +37,9 @@ function Main() {
         </div>
       </Wrap>
     
-    </>
-  );
+    </main>
+  )
+    
 }
 
 export default Main;

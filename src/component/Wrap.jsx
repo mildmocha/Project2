@@ -1,11 +1,12 @@
-
+import classes from './Wrap.module.css';
 
 const Wrap = ({children}) => {
   const style1 = {
-    width : '360px',
-    height : '640px',
+    minWidth : '300px',
+    
+    minHeight: '500px',
     position: 'relative'
-   , background :  "#FFC125" 
+   , //background :  "#FFC125" 
   }
 
 return (

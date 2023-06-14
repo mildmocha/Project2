@@ -1,0 +1,5 @@
+img {width: 100%;}
+.wrap {width: 100%;}
+@media (min-width: 841px) {
+    .wrap{ display: flex; align-items: end;}
+  }
