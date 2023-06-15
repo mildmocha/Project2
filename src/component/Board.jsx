@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link, Routes, Route, useParams } from 'react-router-dom';
 import Post from './Post';
+import classes from './Board.module.css';
 
 const fetchPosts = async (setPosts, setIsLoading, setError) => {
   setIsLoading(true);
@@ -88,15 +89,15 @@ const Board = () => {
 
   return (
     <div>
-      <h1>게시판</h1>
+      <h1>BOARD</h1>
       <form onSubmit={handlePostSubmit}>
         <input type="text" name="title" placeholder="제목" ref={titleRef} />
         <textarea name="content" placeholder="내용" ref={contentRef} />
         <button type="submit">작성</button>
       </form>
-      <ul>
+      <ul className={classes.postList}>
         {posts.map((post) => (
-          <li key={post.id}>
+          <li key={post.id} className={classes.title1}>
             <Link to={`/Post/${post.id}`}>{post.title}</Link>
           </li>
         ))}
