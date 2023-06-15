@@ -110,11 +110,13 @@ const Board = () => {
       
       <ul className={classes.postList}>
         {posts.map((post) => (
+          <Link to={`/Post/${post.id}`}>
           <div className={classes.shadow3}>
           <li key={post.id} className={classes.title1}>
-            <Link to={`/Post/${post.id}`}>{post.title}</Link>
+            {post.title}
           </li>
           </div>
+          </Link>
         ))}
       </ul>
       </Wrap>
