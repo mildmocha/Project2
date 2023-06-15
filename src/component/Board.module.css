@@ -1,1 +1,8 @@
 .postList {display: flex; flex-direction: column-reverse;}
+.shadow3 {filter: drop-shadow( 5px 5px 0px black)}
+.title1 { display: flex; justify-content: center; align-items:center;
+
+    border: 0px solid black; width:270px ;height: 62px; margin: auto;
+    clip-path: polygon(0 16%, 100% 0%, 93% 100%, 5% 86%); background: rgb(247, 245, 245);
+    margin-bottom: 20px; 
+    font-family: Impact, Haettenschweiler,  sans-serif;}

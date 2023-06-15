@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Link, Routes, Route, useParams } from 'react-router-dom';
 import Post from './Post';
 import classes from './Board.module.css';
+import Wrap from './Wrap';
+
 
 const fetchPosts = async (setPosts, setIsLoading, setError) => {
   setIsLoading(true);
@@ -98,19 +100,26 @@ const Board = () => {
 
   return (
     <div>
+      <Wrap>
       <h1>BOARD</h1>
       <form onSubmit={handlePostSubmit}>
         <input type="text" name="title" placeholder="제목" ref={titleRef} />
         <textarea name="content" placeholder="내용" ref={contentRef} />
         <button type="submit">작성</button>
       </form>
+      
       <ul className={classes.postList}>
         {posts.map((post) => (
+          <Link to={`/Post/${post.id}`}>
+          <div className={classes.shadow3}>
           <li key={post.id} className={classes.title1}>
-            <Link to={`/Post/${post.id}`}>{post.title}</Link>
+            {post.title}
           </li>
+          </div>
+          </Link>
         ))}
       </ul>
+      </Wrap>
       <Routes>
         
         <Route path="/Post/:id" element={<Post posts={posts} setPosts={setPosts} />} />
