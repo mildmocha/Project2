@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 const Post = ({ posts }) => {
   const {id}  = useParams();
   console.log(id,'id')
-  console.log(post.content)
+ 
   console.log (posts,'posts')
   const post = posts.find((post) =>post.id===id);
   if (!post) {
