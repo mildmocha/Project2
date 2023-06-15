@@ -24,8 +24,9 @@ function Main() {
           
           <Box text="START" Menu />
         </Link>
+        <Link to="/Board">
         <Box text="BOARD" Menu />
-
+        </Link>
         <div className="log-sign">
           {isLogin ? (
             <SignIn />
