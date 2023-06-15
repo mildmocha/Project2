@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Link,Routes,Route,useParams } from 'react-router-dom';
+import { Link, Routes, Route, useParams } from 'react-router-dom';
 import Post from './Post';
 
 const fetchPosts = async (setPosts, setIsLoading, setError) => {
@@ -40,11 +40,8 @@ const Board = () => {
     event.preventDefault();
 
     const newPost = {
-      
       title: titleRef.current.value,
-
       content: contentRef.current.value
-      
     };
 
     fetch('https://project2-d16b2-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json', {
@@ -56,14 +53,20 @@ const Board = () => {
     })
       .then(response => response.json())
       .then(data => {
-        setPosts([...posts, data]);
         clearValue();
-        fetchPosts(setPosts, setIsLoading, setError); // Fetch updated posts
+        const updatedPost = {
+          id: data.name, // Firebase에서 생성된 고유한 id 값
+          ...newPost
+        };
+        
+          setPosts([...posts, updatedPost]);
+          
+       
       })
+      
       .catch(error => {
         console.error('Error saving data:', error);
       });
-      
   };
 
   const clearValue = () => {
@@ -74,9 +77,6 @@ const Board = () => {
   useEffect(() => {
     fetchPosts(setPosts, setIsLoading, setError); // Fetch initial posts
   }, []);
-  useEffect(() => {
-    
-  }, [posts]);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -86,9 +86,7 @@ const Board = () => {
     return <p>Error: {error}</p>;
   }
 
-
   return (
-    
     <div>
       <h1>게시판</h1>
       <form onSubmit={handlePostSubmit}>
@@ -104,12 +102,11 @@ const Board = () => {
         ))}
       </ul>
       <Routes>
-        <Route path="/" element={<h2>Welcome to the Board</h2>} />
-        <Route path="/Post/:id" element={<Post posts={posts} />} />
+        
+        <Route path="/Post/:id" element={<Post posts={posts} setPosts={setPosts} />} />
       </Routes>
     </div>
-);
-  
+  );
 };
 
 export default Board;
