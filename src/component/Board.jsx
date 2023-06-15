@@ -40,6 +40,15 @@ const Board = () => {
   const handlePostSubmit = (event) => {
     event.preventDefault();
 
+    const title = titleRef.current.value;
+  const content = contentRef.current.value;
+
+  if (title.trim() === '' || content.trim() === '') {
+    // 제목이나 내용이 비어있는 경우
+    return;
+  }
+
+
     const newPost = {
       title: titleRef.current.value,
       content: contentRef.current.value
