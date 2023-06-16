@@ -1,0 +1,5 @@
+.BgWrap {width : 360px; height :640px; box-sizing: border-box; padding-top: 5px;
+   background:url(../img/BGIMG.jpg)
+   ; background-position: -79% -98.9%;
+   position: relative;
+}

@@ -14,9 +14,11 @@ const LoginSub = () => {
   console.log('2', isLogin);
 
   return (
+    <>
+    <Back />
     <Wrap>
       <div className={classes.WrapInner} >
-      <Back />
+     
       <LoginCurrent />
       <img className={classes.LoginBanner} src={BannerImg} />
 
@@ -29,6 +31,7 @@ const LoginSub = () => {
       )}
       </div>
     </Wrap>
+    </>
   );
 };
 
