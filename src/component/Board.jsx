@@ -1,7 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link, Routes, Route, useParams } from 'react-router-dom';
+import { getAuth } from 'firebase/auth';
 import Post from './Post';
 import classes from './Board.module.css';
+import ReverseBgWrap from './ReverseBgWrap';
+import UserProfile from './UserProfile';
 import Wrap from './Wrap';
 
 const fetchPosts = async (setPosts, setIsLoading, setError) => {
@@ -39,6 +42,22 @@ const Board = () => {
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [userProfile, setUserProfile] = useState(null);
+  const [userDisplayName, setUserDisplayName] = useState('');
+
+  useEffect(() => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user !== null) {
+      // 사용자가 로그인되어 있는 경우 프로필 정보를 가져옴
+      const displayName = user.displayName;
+      setUserProfile(displayName);
+    } else {
+      // 사용자가 로그인되어 있지 않은 경우
+      setUserProfile(null);
+    }
+  }, []);
 
   const handlePostSubmit = async (event) => {
     event.preventDefault();
@@ -60,7 +79,7 @@ const Board = () => {
     const newPost = {
       title: title,
       content: content,
-      author: '게시물 작성자',
+      author: userProfile, // 현재 로그인한 사용자의 프로필 정보를 작성자로 설정
       timestamp: new Date().toISOString()
     };
 
@@ -120,16 +139,20 @@ const Board = () => {
   }
 
   return (
-    <div>
+    <div className={classes.wrapwrap}>
       <Wrap>
-        <h1>BOARD</h1>
+    
+      <ReverseBgWrap>
+        
+        <h1 className={classes.Board}>BOARD</h1>
+        
         <button className={classes.modalButton} onClick={openModal}>
           글쓰기
         </button>
         {isModalOpen && (
           <div className={classes.modal}>
             <form onSubmit={handlePostSubmit}>
-              <input type="text" name="title" placeholder="제목" ref={titleRef} className={classes.titleInput}/>
+              <input type="text" name="title" placeholder="제목" ref={titleRef} className={classes.titleInput} />
               <textarea name="content" placeholder="내용" ref={contentRef} className={classes.text} />
               <button type="submit" disabled={isSubmitting}>
                 작성
@@ -144,19 +167,20 @@ const Board = () => {
           {posts.map((post) => (
             <Link key={post.id} to={`/Post/${post.id}`}>
               <div className={classes.shadow3}>
-                <li className={classes.title1}>
-                  {post.title}
-                </li>
-                <li className={classes.author}>
-                  작성자: {post.author}
-                </li>
-                <li className={classes.timestamp}>
-                  작성 시간: {post.timestamp}
-                </li>
+                <li className={classes.title1}>{post.title}</li>
+              
               </div>
+              <div className={classes.pWrap}>
+              <p className={classes.author}>
+                  {post.author} {/* 수정: 작성자 정보를 표시 */}
+                </p>
+                 
+                <p className={classes.timestamp}> {new Date(post.timestamp).toLocaleString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</p>
+                </div>
             </Link>
           ))}
         </ul>
+      </ReverseBgWrap>
       </Wrap>
       <Routes>
         <Route path="/Post/:id" element={<Post posts={posts} setPosts={setPosts} />} />

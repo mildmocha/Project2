@@ -1,34 +1,32 @@
-import React, {useState} from 'react'
-import classes from "./LoginButton.module.css"
+import React, { useState } from 'react';
+import classes from "./LoginButton.module.css";
 import { useNavigate } from "react-router-dom";
 
-import {auth} from '../Firebase';
+import { auth } from '../Firebase';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
-const LoginButton = ()=> {
-    const [userData, setUserData] = useState (null);
+const LoginButton = () => {
+  const [userData, setUserData] = useState(null);
+  const navigate = useNavigate();
 
-    function handleGoogleLogin(){
-        
-      const provider = new GoogleAuthProvider(); // provider 구글 설정
-      signInWithPopup(auth, provider)// popup을 이용한 sign up
+  function handleGoogleLogin() {
+    const provider = new GoogleAuthProvider(); // 구글 로그인 설정
+    signInWithPopup(auth, provider) // 팝업을 통한 로그인
       .then((data) => {
-        setUserData(data.user); // user data 설정
-      ;
+        setUserData(data.user); // 사용자 데이터 설정
+      
       })
-      .catch ((err)=>{
+      .catch((err) => {
         console.log(err);
       });
-    }
-    const navi = useNavigate()
-    navi('/')
-    return (
-        
-        <div className={classes.shadow2} >
-        <button className={classes.loginbtn} onClick={handleGoogleLogin} > Login </button>
+  }
+
+  return (
+    <div className={classes.shadow2}>
+      <button className={classes.loginbtn} onClick={handleGoogleLogin}>Login</button>
       {userData ? userData.displayName : null}
-        </div>
-        
-    )
-}
-export default LoginButton
+    </div>
+  );
+};
+
+export default LoginButton;

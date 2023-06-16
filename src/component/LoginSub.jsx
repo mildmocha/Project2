@@ -1,34 +1,32 @@
-import React, {useState} from 'react';
-import BannerImg from '../img/Banner2.png'
+import React, { useState } from 'react';
+import BannerImg from '../img/Banner2.png';
 import Wrap from './Wrap';
-import classes from "./LoginSub.module.css"
+import classes from "./LoginSub.module.css";
 import LoginButton from './LoginButton';
 import Logout from './Logout';
 import LoginCurrent from './LoginCurrent';
 import Back from './BACK';
-
-
-
-
+import UserProfile from './UserProfile'; // 수정된 부분
 
 
 const LoginSub = () => {
-  
-
-const isLogin = LoginCurrent();
-console.log ('2',isLogin)
+  const isLogin = LoginCurrent();
+  console.log('2', isLogin);
 
   return (
-  <Wrap>
-    <Back></Back>
-    <LoginCurrent/>
-<img className={classes.LoginBanner} src={BannerImg}/>
-{isLogin ? (
-<Logout/>
-) : (
-<LoginButton />
-)}
-  </Wrap>
+    <Wrap>
+      <Back />
+      <LoginCurrent />
+      <img className={classes.LoginBanner} src={BannerImg} />
+
+      <UserProfile /> {/* 수정된 부분 */}
+
+      {isLogin ? (
+        <Logout />
+      ) : (
+        <LoginButton />
+      )}
+    </Wrap>
   );
 };
 

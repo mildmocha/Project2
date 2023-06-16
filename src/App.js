@@ -14,6 +14,7 @@ import Main from "./component/Main";
 import StartQuiz from "./component/StartQuiz";
 import Board from "./component/Board";
 import Post from './component/Post';
+
 function App() {
   const posts =[];
   return (

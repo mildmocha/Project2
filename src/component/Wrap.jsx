@@ -7,6 +7,7 @@ const Wrap = ({children}) => {
     minHeight: '500px',
     position: 'relative'
    , background :  "#FFC125" 
+   , height : '100vh'
   }
 
 return (

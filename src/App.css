@@ -1,4 +1,4 @@
-* { text-align: center;
+* { 
 box-sizing: border-box;}
 
 main {box-sizing: border-box}
@@ -53,3 +53,5 @@ a { text-decoration: none; color: black; display: block;}
   @media (min-width: 1101px){main { min-height: 600px;}
     .mainImg2 {width: 30%; padding-bottom: 7%;}
   }
+
+  li {list-style: none;}
