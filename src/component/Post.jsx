@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import classes from './Post.module.css';
+import ReverseBgWrap from './ReverseBgWrap';
+import Wrap from './Wrap';
+import QuizBoard from './QuizBoard';
+import Back from './BACK';
 const Post = () => {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
@@ -51,10 +55,19 @@ const Post = () => {
   }
 
   return (
-    <div>
-      <h2>{post.title}</h2>
+    <Wrap>
+      <ReverseBgWrap>
+        
+    <div className={classes.post}>
+      <h2 className={classes.postTitle}>{post.title}<Back></Back></h2>
+      
+    <div className={classes.content}>
       <p>{post.content}</p>
+      </div>
+      
     </div>
+    </ReverseBgWrap>
+    </Wrap>
   );
 };
 

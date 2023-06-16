@@ -102,11 +102,13 @@ const StartQuiz = () =>{
     </QuizBoard>
     <div className={classes.answerWrap} >
     <input className={classes.answer} placeholder="정답" value={userAnswer} onChange={handleAnswerChange} onKeyDown={handleKeyDown} ></input>
+    
     <button className={classes.right} onClick={handleNextQuestion} disabled={userAnswer.trim()}>
         <img src= {RIGHT}></img>
       </button>
       </div>
-    
+      
+      
     <Back A/>
     
 </BgWrap>

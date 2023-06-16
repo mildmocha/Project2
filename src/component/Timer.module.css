@@ -1,8 +1,7 @@
 .Timer {font-family: Impact, Haettenschweiler,  sans-serif;
-    font-size:30px;
-    position: absolute;
-    right: 5px;
-    bottom:10px;
+    font-size:30px; text-align: right; margin-right: 10px;
+   
+  
 }
 .Count {
     font-size: 50px;

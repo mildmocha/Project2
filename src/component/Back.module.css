@@ -1,12 +1,12 @@
-
 .Back {
-    z-index: 100;
-    filter: drop-shadow( 3px 3px 1px rgba(0, 0, 0, 0.411));
-    position: absolute;
-    display: block; 
-    background: none;
-    width: 60px; height: 50px;
-    background: url('../img/Return.png') no-repeat;
-    border:  0;
-    
+  z-index: 100;
+  filter: drop-shadow(3px 3px 1px rgba(0, 0, 0, 0.411));
+  position: absolute;
+  display: block;
+  background: none;
+  width: 60px; right: 50px;
+  height: 50px;
+  background: url("../img/Return.png") no-repeat;
+  border: 0;
+  top: 20px;  
 }
