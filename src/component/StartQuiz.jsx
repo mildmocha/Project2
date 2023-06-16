@@ -6,6 +6,7 @@ import BannerImg from '../img/Banner2.png'
 import Timer from "./Timer"
 import React, {useState,useRef} from "react"
 import RIGHT from "../img/RIGHT.png"
+import Wrap from "./Wrap"
 
 const StartQuiz = () =>{
   
@@ -47,15 +48,7 @@ const StartQuiz = () =>{
     
   };
     
-  const handleShowResult = () => {
-    const currentQuestion = questions[currentQuestionIndex];
-
-    if (userAnswer.trim().toLowerCase() === currentQuestion.answer.toLowerCase()) {
-      setScore(score + 1);
-    }
-
-    setShowResult(true);
-  };
+  
 
   const restartQuiz = () => {
     setScore(0);
@@ -97,20 +90,27 @@ const StartQuiz = () =>{
 
 
     return(
+      <Wrap>
 <BgWrap >
+  
     <img className={classes.logo} src={BannerImg}/>
     <QuizBoard>
         {
 }
         {currentQuestion.question}
+        <Timer onTimeUp={handleNextQuestion} timeLimit={999} key={timerKey}></Timer>
     </QuizBoard>
+    <div className={classes.answerWrap} >
     <input className={classes.answer} placeholder="정답" value={userAnswer} onChange={handleAnswerChange} onKeyDown={handleKeyDown} ></input>
     <button className={classes.right} onClick={handleNextQuestion} disabled={userAnswer.trim()}>
         <img src= {RIGHT}></img>
       </button>
-    <Timer onTimeUp={handleNextQuestion} timeLimit={3} key={timerKey}></Timer>
+      </div>
+    
     <Back A/>
+    
 </BgWrap>
+</Wrap>
     )
 }
 

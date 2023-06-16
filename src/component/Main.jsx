@@ -18,6 +18,7 @@ function Main() {
     <main className={classes.Main} style={style1}>
       
       <Wrap>
+        <div className={classes.mainwrap} >
       <img src= {MainImg} className='mainImg'/> 
         <img src ={mainImg2} className="mainImg2"/>
         
@@ -50,6 +51,7 @@ function Main() {
               <Login />
             </Link>
           )}
+        </div>
         </div>
       </Wrap>
     

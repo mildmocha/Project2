@@ -1,31 +1,34 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Link, Routes, Route, useParams } from 'react-router-dom';
-import { getAuth } from 'firebase/auth';
-import Post from './Post';
-import classes from './Board.module.css';
-import ReverseBgWrap from './ReverseBgWrap';
-import UserProfile from './UserProfile';
-import Wrap from './Wrap';
+import React, { useRef, useState, useEffect } from "react";
+import { Link, Routes, Route, useParams } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+import Post from "./Post";
+import classes from "./Board.module.css";
+import ReverseBgWrap from "./ReverseBgWrap";
+import UserProfile from "./UserProfile";
+import Wrap from "./Wrap";
+import Back from "./BACK";
 
 const fetchPosts = async (setPosts, setIsLoading, setError) => {
   setIsLoading(true);
   setError(null);
 
   try {
-    const response = await fetch('https://project2-d16b2-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json');
+    const response = await fetch(
+      "https://project2-d16b2-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json"
+    );
     if (!response.ok) {
-      throw new Error('Failed to fetch posts.');
+      throw new Error("Failed to fetch posts.");
     }
 
     const data = await response.json();
-    if (data && typeof data === 'object') {
-      const postsArray = Object.keys(data).map(key => ({
+    if (data && typeof data === "object") {
+      const postsArray = Object.keys(data).map((key) => ({
         id: key,
-        ...data[key]
+        ...data[key],
       }));
       setPosts(postsArray);
     } else {
-      setError('Invalid response data');
+      setError("Invalid response data");
     }
   } catch (error) {
     setError(error.message);
@@ -35,15 +38,15 @@ const fetchPosts = async (setPosts, setIsLoading, setError) => {
 };
 
 const Board = () => {
-  const titleRef = useRef('');
-  const contentRef = useRef('');
+  const titleRef = useRef("");
+  const contentRef = useRef("");
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
-  const [userDisplayName, setUserDisplayName] = useState('');
+  const [userDisplayName, setUserDisplayName] = useState("");
 
   useEffect(() => {
     const auth = getAuth();
@@ -69,7 +72,7 @@ const Board = () => {
     const title = titleRef.current.value;
     const content = contentRef.current.value;
 
-    if (title.trim() === '' || content.trim() === '') {
+    if (title.trim() === "" || content.trim() === "") {
       // 제목이나 내용이 비어있는 경우
       return;
     }
@@ -80,20 +83,23 @@ const Board = () => {
       title: title,
       content: content,
       author: userProfile, // 현재 로그인한 사용자의 프로필 정보를 작성자로 설정
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
 
     try {
-      const response = await fetch('https://project2-d16b2-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newPost)
-      });
+      const response = await fetch(
+        "https://project2-d16b2-default-rtdb.asia-southeast1.firebasedatabase.app/posts.json",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newPost),
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('Failed to save post.');
+        throw new Error("Failed to save post.");
       }
 
       clearValue();
@@ -101,12 +107,12 @@ const Board = () => {
       const data = await response.json();
       const updatedPost = {
         id: data.name,
-        ...newPost
+        ...newPost,
       };
 
-      setPosts(prevPosts => [...prevPosts, updatedPost]);
+      setPosts((prevPosts) => [...prevPosts, updatedPost]);
     } catch (error) {
-      console.error('Error saving data:', error);
+      console.error("Error saving data:", error);
     }
 
     setIsSubmitting(false);
@@ -114,8 +120,8 @@ const Board = () => {
   };
 
   const clearValue = () => {
-    titleRef.current.value = '';
-    contentRef.current.value = '';
+    titleRef.current.value = "";
+    contentRef.current.value = "";
   };
 
   const openModal = () => {
@@ -141,49 +147,70 @@ const Board = () => {
   return (
     <div className={classes.wrapwrap}>
       <Wrap>
-    
-      <ReverseBgWrap>
-        
-        <h1 className={classes.Board}>BOARD</h1>
-        
-        <button className={classes.modalButton} onClick={openModal}>
-          글쓰기
-        </button>
-        {isModalOpen && (
-          <div className={classes.modal}>
-            <form onSubmit={handlePostSubmit}>
-              <input type="text" name="title" placeholder="제목" ref={titleRef} className={classes.titleInput} />
-              <textarea name="content" placeholder="내용" ref={contentRef} className={classes.text} />
-              <button type="submit" disabled={isSubmitting}>
-                작성
-              </button>
-              <button type="button" onClick={closeModal}>
-                취소
-              </button>
-            </form>
-          </div>
-        )}
-        <ul className={classes.postList}>
-          {posts.map((post) => (
-            <Link key={post.id} to={`/Post/${post.id}`}>
-              <div className={classes.shadow3}>
-                <li className={classes.title1}>{post.title}</li>
-              
-              </div>
-              <div className={classes.pWrap}>
-              <p className={classes.author}>
-                  {post.author} {/* 수정: 작성자 정보를 표시 */}
-                </p>
-                 
-                <p className={classes.timestamp}> {new Date(post.timestamp).toLocaleString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}</p>
+        <ReverseBgWrap>
+          <Back></Back>
+          <h1 className={classes.Board}>BOARD</h1>
+
+          <button className={classes.modalButton} onClick={openModal}>
+            글쓰기
+          </button>
+          {isModalOpen && (
+            <div className={classes.modal}>
+              <form onSubmit={handlePostSubmit}>
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="제목"
+                  ref={titleRef}
+                  className={classes.titleInput}
+                />
+                <textarea
+                  name="content"
+                  placeholder="내용"
+                  ref={contentRef}
+                  className={classes.text}
+                />
+                <button type="submit" disabled={isSubmitting}>
+                  작성
+                </button>
+                <button type="button" onClick={closeModal}>
+                  취소
+                </button>
+              </form>
+            </div>
+          )}
+          <ul className={classes.postList}>
+            {posts.map((post) => (
+              <Link key={post.id} to={`/Post/${post.id}`}>
+                <div className={classes.shadow3}>
+                  <li className={classes.title1}>{post.title}</li>
                 </div>
-            </Link>
-          ))}
-        </ul>
-      </ReverseBgWrap>
+                <div className={classes.pWrap}>
+                  <p className={classes.author}>
+                    {post.author} {/* 수정: 작성자 정보를 표시 */}
+                  </p>
+
+                  <p className={classes.timestamp}>
+                    {" "}
+                    {new Date(post.timestamp).toLocaleString("ko-KR", {
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </ul>
+        </ReverseBgWrap>
       </Wrap>
       <Routes>
-        <Route path="/Post/:id" element={<Post posts={posts} setPosts={setPosts} />} />
+        <Route
+          path="/Post/:id"
+          element={<Post posts={posts} setPosts={setPosts} />}
+        />
       </Routes>
     </div>
   );

@@ -1,5 +1,28 @@
-.BgWrap {width : 360px; height :640px; box-sizing: border-box; padding-top: 5px;
-   background:url(../img/BGIMG.jpg)
-   ; background-position: -79% -98.9%;
-   position: relative;
+.BgWrap {
+   width: 60%;
+ z-index: 100;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-top: 5px;
+display: flex;
+flex-direction: column;
+justify-content: start;
+  position: relative;
+
 }
+.BgWrap::before {
+   content: '';
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100vh;
+   background: url(../img/BGIMG.jpg);
+   background-position: 15% 7%;
+   
+   z-index: -1;
+ }
+ @media (max-width: 500px) {
+   .BgWrap {width: 95%;}
+ }
+  

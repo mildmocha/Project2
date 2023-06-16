@@ -11,7 +11,7 @@ const Wrap = ({children}) => {
   }
 
 return (
-    <div className="wrap" style= {style1}>
+    <div className={classes.wrap} style= {style1}>
         {children}
     </div>
 )

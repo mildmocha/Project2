@@ -1,1 +1,2 @@
-main{ background: url('../img/25701.jpg')  no-repeat;   ; }
+main{ background: url('../img/25701.jpg')  no-repeat;  }
+.mainwrap {display: flex; flex-direction: column; align-items: center;}

@@ -15,6 +15,7 @@ const LoginSub = () => {
 
   return (
     <Wrap>
+      <div className={classes.WrapInner} >
       <Back />
       <LoginCurrent />
       <img className={classes.LoginBanner} src={BannerImg} />
@@ -26,6 +27,7 @@ const LoginSub = () => {
       ) : (
         <LoginButton />
       )}
+      </div>
     </Wrap>
   );
 };

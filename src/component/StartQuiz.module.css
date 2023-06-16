@@ -1,7 +1,9 @@
 .logo {
-  width: 29%;
+  min-width: 190px;
+  width: 20%;
+  
   position: absolute;
-  top: 2%;
+  top: 1%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -10,8 +12,8 @@
     font-size:25px;
     padding: 0 15px;
     background: rgba(255, 255, 255, 0.589);
-border : none;width: 304px; height: 60px;
+border : none;width: 100%; height: 60px;
 }
 .answer:active { border:none;  font-family: Impact, Haettenschweiler,  sans-serif;}
 .answer::placeholder {text-align: start; padding:0 5px; color: rgba(0, 0, 0, 0.514); font-weight: bold;}
-.right {background: none; border : none; position: absolute; right:10px; bottom: 95px;}
+.right {background: none; border : none; position: absolute; right:1%; bottom: 11%;}

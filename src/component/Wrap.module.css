@@ -1,5 +1,8 @@
 img {width: 100%;}
 .wrap {width: 100%;}
-@media (min-width: 841px) {
-    .wrap{ display: flex; align-items: end;}
+
+    .wrap{ display: flex; justify-content: center;}
+  
+  @media (max-width: 500px) {
+    
   }
