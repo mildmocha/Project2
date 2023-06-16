@@ -1,8 +1,54 @@
-.postList {display: flex; flex-direction: column-reverse;}
-.shadow3 {filter: drop-shadow( 5px 5px 0px black)}
-.title1 { display: flex; justify-content: center; align-items:center;
+.postList {
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 0;
+}
+.shadow3 {
+  filter: drop-shadow(5px 5px 0px rgba(0, 0, 0, 0.158));
+}
+.title1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    border: 0px solid black; width:270px ;height: 62px; margin: auto;
-    clip-path: polygon(0 16%, 100% 0%, 93% 100%, 5% 86%); background: rgb(247, 245, 245);
-    margin-bottom: 20px; 
-    font-family: Impact, Haettenschweiler,  sans-serif;}
+  border: 0px solid black;
+  width: 270px;
+  height: 62px;
+  margin: auto;
+  clip-path: polygon(0 16%, 100% 0%, 93% 100%, 5% 86%);
+  background: rgb(247, 245, 245);
+  margin-bottom: 20px;
+  font-family: Impact, Haettenschweiler, sans-serif;
+}
+.modalButton {
+  position: absolute;
+  right: 20%;
+  top: 20px;
+}
+.modal {
+  width: 80%;
+  height: 100vh;
+  background-color: rgba(44, 43, 43, 0.747);
+  position: fixed;
+  top: 0;
+  left: 10%;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  
+  
+}
+
+.titleInput {text-align: start;
+    height: 6vh;
+    margin-top: 5%;
+    margin-bottom: 3%;
+  display: block;
+  width: 70vw;
+}
+.text {
+    text-align: start;
+  display: block;
+  width: 70vw;
+  height: 70vh;
+}

@@ -20,13 +20,28 @@ function Main() {
       <Wrap>
       <img src= {MainImg} className='mainImg'/> 
         <img src ={mainImg2} className="mainImg2"/>
-        <Link to="/StartQuiz">
+        
+        {isLogin ? (
+             <Link to="/StartQuiz">
           
-          <Box text="START" Menu />
-        </Link>
-        <Link to="/Board">
-        <Box text="BOARD" Menu />
-        </Link>
+             <Box text="START" Menu />
+           </Link>
+          ) : (
+            <Link to="/LoginSub">
+              <Box text="START" Menu />
+            </Link>
+          )}
+       
+        {isLogin ? (
+            <Link to="/Board">
+            <Box text="BOARD" Menu />
+            </Link>
+          ) : (
+            <Link to="/LoginSub">
+             <Box text="BOARD" Menu />
+            </Link>
+          )}
+        
         <div className="log-sign">
           {isLogin ? (
             <SignIn />
