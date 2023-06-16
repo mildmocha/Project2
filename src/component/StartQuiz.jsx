@@ -4,7 +4,7 @@ import QuizBoard from "./QuizBoard"
 import classes from "./StartQuiz.module.css"
 import BannerImg from '../img/Banner2.png'
 import Timer from "./Timer"
-import React, {useState,useRef} from "react"
+import React, {useState,useRef,useEffect} from "react"
 import RIGHT from "../img/RIGHT.png"
 import Wrap from "./Wrap"
 
@@ -13,18 +13,46 @@ const StartQuiz = () =>{
     const [timerKey, setTimerKey] = useState(0);
 
     const [questions, setQuestions] = useState([
-        {
-          question: 'What is the capital of France?',
-          answer: 'Paris',
-          id: 1
-        },
-        {
-          question: 'Which planet is known as the "Red Planet"?',
-          answer: 'Mars',
-          id: 2
-        },
+      {
+        question: '프랑스의 수도는 어디인가요?',
+        answer: '파리',
+        id: 1
+      },
+      {
+        question: '어떤 행성이 "빨간 행성"으로 알려져 있나요?',
+        answer: '화성',
+        id: 2
+      },
+      {
+        question: '세계에서 가장 큰 바다는 무엇인가요?',
+        answer: '태평양',
+        id: 3
+      },
+      {
+        question: '화학 원소 산소의 기호는 무엇인가요?',
+        answer: 'O',
+        id: 4
+      },
+      {
+        question: '모나리자를 그린 화가는 누구인가요?',
+        answer: '레오나르도 다 빈치',
+        id: 5
+      },
+    ]);
+    const shuffleQuestions = () => {
+      setQuestions((prevQuestions) => {
+        const shuffledQuestions = [...prevQuestions];
+        shuffledQuestions.sort(() => Math.random() - 0.5);
+        return shuffledQuestions;
+      });
+    };
+  
+    useEffect(() => {
+      shuffleQuestions();
+    }, []);
+  
         // Add more questions here...
-      ]);
+      
 
       const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
       const [userAnswer, setUserAnswer] = useState('');
@@ -94,11 +122,14 @@ const StartQuiz = () =>{
 <BgWrap >
   
     <img className={classes.logo} src={BannerImg}/>
+   
     <QuizBoard>
-        {
-}
+      
+    <p>점수:{score} </p>
         {currentQuestion.question}
+        
         <Timer onTimeUp={handleNextQuestion} timeLimit={999} key={timerKey}></Timer>
+        
     </QuizBoard>
     <div className={classes.answerWrap} >
     <input className={classes.answer} placeholder="정답" value={userAnswer} onChange={handleAnswerChange} onKeyDown={handleKeyDown} ></input>
