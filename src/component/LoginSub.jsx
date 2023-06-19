@@ -7,6 +7,7 @@ import Logout from './Logout';
 import LoginCurrent from './LoginCurrent';
 import Back from './BACK';
 import UserProfile from './UserProfile'; // 수정된 부분
+import Box from './Box';
 
 
 const LoginSub = () => {
@@ -25,6 +26,9 @@ const LoginSub = () => {
       <UserProfile /> {/* 수정된 부분 */}
 
       {isLogin ? (
+      
+          
+        
         <Logout />
       ) : (
         <LoginButton />

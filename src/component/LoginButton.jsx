@@ -11,19 +11,23 @@ const LoginButton = ()=> {
 
     function handleGoogleLogin(){
     
-        
+      navi('/')
       const provider = new GoogleAuthProvider(); // provider 구글 설정
       signInWithPopup(auth, provider)// popup을 이용한 sign up
+      
       .then((data) => {
         setUserData(data.user); // user data 설정
       ;
       })
       .catch ((err)=>{
         console.log(err);
-      });
+      }
+      
+      );
       
     }
     const navi = useNavigate()
+    
     return (
         
         <div className={classes.shadow2} >

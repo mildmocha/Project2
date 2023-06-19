@@ -51,6 +51,7 @@ const Board = () => {
   useEffect(() => {
     const auth = getAuth();
     const user = auth.currentUser;
+    
 
     if (user !== null) {
       // 사용자가 로그인되어 있는 경우 프로필 정보를 가져옴
@@ -60,7 +61,9 @@ const Board = () => {
       // 사용자가 로그인되어 있지 않은 경우
       setUserProfile(null);
     }
+  
   }, []);
+  
 
   const handlePostSubmit = async (event) => {
     event.preventDefault();
@@ -102,7 +105,7 @@ const Board = () => {
         throw new Error("Failed to save post.");
       }
 
-      clearValue();
+     
 
       const data = await response.json();
       const updatedPost = {
@@ -119,10 +122,7 @@ const Board = () => {
     closeModal();
   };
 
-  const clearValue = () => {
-    titleRef.current.value = "";
-    contentRef.current.value = "";
-  };
+ 
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -133,8 +133,20 @@ const Board = () => {
   };
 
   useEffect(() => {
+
+      
     fetchPosts(setPosts, setIsLoading, setError); // Fetch initial posts
   }, []);
+
+  const postListRef = useRef(null);
+
+  useEffect(() => {
+    if (postListRef.current) {
+    // 스크롤 위치를 맨 위로 설정
+    postListRef.current.scrollTop = postListRef.current;
+    }
+  }, [posts]);
+
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -170,16 +182,16 @@ const Board = () => {
                   ref={contentRef}
                   className={classes.text}
                 />
-                <button type="submit" disabled={isSubmitting}>
+                <button type="submit" disabled={isSubmitting} className={classes.submit}>
                   작성
                 </button>
-                <button type="button" onClick={closeModal}>
+                <button type="button" onClick={closeModal} className={classes.submit}>
                   취소
                 </button>
               </form>
             </div>
           )}
-          <ul className={classes.postList}>
+          <ul className={classes.postList} ref={postListRef}>
             {posts.map((post) => (
               <Link key={post.id} to={`/Post/${post.id}`}>
                 <div className={classes.shadow3}>

@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Link } from "react-router-dom";
 import classes from "./Main.module.css"
 import mainImg2 from "../img/Banner2.png"
 import LoginCurrent from "./LoginCurrent";
+import LoginSub from "./LoginSub";
 
 function Main() {
   const style1={
@@ -42,7 +43,10 @@ function Main() {
              <Box text="BOARD" Menu />
             </Link>
           )}
-        
+        {isLogin ?( 
+         <Link to="/LoginSub">
+             <Box text="PROFILE" Menu />
+            </Link>):(<></>)}
         <div className="log-sign">
           {isLogin ? (
             <SignIn />
@@ -51,7 +55,9 @@ function Main() {
               <Login />
             </Link>
           )}
+
         </div>
+         
         </div>
       </Wrap>
     
