@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import classes from './Post.module.css';
-import ReverseBgWrap from './ReverseBgWrap';
-import Wrap from './Wrap';
-import QuizBoard from './QuizBoard';
-import Back from './BACK';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import classes from "./Post.module.css";
+import ReverseBgWrap from "./ReverseBgWrap";
+import Wrap from "./Wrap";
+import QuizBoard from "./QuizBoard";
+import Back from "./BACK";
 const Post = () => {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(true);
@@ -17,20 +17,22 @@ const Post = () => {
       setError(null);
 
       try {
-        const response = await fetch(`https://project2-d16b2-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${id}.json`);
+        const response = await fetch(
+          `https://project2-d16b2-default-rtdb.asia-southeast1.firebasedatabase.app/posts/${id}.json`
+        );
         if (!response.ok) {
-          throw new Error('Failed to fetch post.');
+          throw new Error("Failed to fetch post.");
         }
 
         const data = await response.json();
-        if (data && typeof data === 'object') {
+        if (data && typeof data === "object") {
           const fetchedPost = {
             id: id,
-            ...data
+            ...data,
           };
           setPost(fetchedPost);
         } else {
-          throw new Error('Invalid response data');
+          throw new Error("Invalid response data");
         }
       } catch (error) {
         setError(error.message);
@@ -57,16 +59,29 @@ const Post = () => {
   return (
     <Wrap>
       <ReverseBgWrap>
-        
-    <div className={classes.post}>
-      <h2 className={classes.postTitle}>{post.title}<Back></Back></h2>
-      
-    <div className={classes.content}>
-      <p>{post.content}</p>
-      </div>
-      
-    </div>
-    </ReverseBgWrap>
+        <div className={classes.post}>
+          <h2 className={classes.postTitle}>
+            {post.title}
+            <Back></Back>
+          </h2>
+
+          <div className={classes.content}>
+            <p>{post.content}</p>
+            <div className={classes.contentTime}>
+              {" "}
+              <p>작성자: {post.author}</p>
+              {new Date(post.timestamp).toLocaleString("ko-KR", {
+                year: "numeric",
+                
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+            </div>
+          </div>
+        </div>
+      </ReverseBgWrap>
     </Wrap>
   );
 };
