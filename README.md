@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+개인프로젝트 2 퀴즈 게임 
+//Link : https://quizproject2.netlify.app/ 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+React로 제작
+React Router를 사용
 
-In the project directory, you can run:
+netlify로 빌드, 배포
 
-### `yarn start`
+내용 :
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Firebase를 이용해 로그인과 Realtime Database로 게시판 서버를 구현
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `yarn test`
+로그인 했을 시 Start를 누르면 렌더링 됐을 때 한번 
+Quiz목록 Json에서 5개가 sort와 math.random을 이용해 랜덤한 순서로 바꾸고 useState로 배열 상태를 업데이트.
+문제당 시간제한이 있으며 시간 초과시 다음 문제로 강제로 넘어감. 
+문제가 넘어가면 Index값이 증가, TimerKey를 갱신하고 맞출 시 점수가 1점씩 오른다.
+갱신된 TimerKey는 Timer를 다시 처음부터 작동시킨다
+index가 5가되면 결과화면이 나오며 점수표시 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Board를 누르면 RealtimeDatabase를 fetch하여 게시글이 나오며
+연결 error가 났을시 Failed to fetch문구가 뜨게 에러처리를 했다.
+UseEffect를 사용하여 렌더링을 제한해 놓았다
+글을 작성하면 json으로 변환되고 서버에 저장된다.
+그러면 Post에서 useParam으로 id를 전달받아 
+json에서 그 id와 동일한 id를 가진 객체를 찾아 그 객체의 내용을 게시글로 볼 수 있다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Board의 제작 목적은 메인 게임 외에 퀴즈를 공유하자는 취지로 만들었다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+후기 :
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+React로 처음 개인 프로젝트를 하려니 많이 어려웠는데 
+FireBase도 처음 써봐서 머리가 굉장히 아팠다
+여기저기 검색해서 기능적으로는 어떻게 완성하긴 했지만
+잘 모르겠고 일단 해보자는 마인드로 만들다 보니
+시작할 때 Component구조를 짜고 시작하는 게 
+중요하다는 것을 하면서 깨달았다.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
