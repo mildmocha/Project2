@@ -1,8 +1,0 @@
-.QuizBoard{
-    padding-top: 30px;
-    height:380px; width : 335px;
-    background: rgba(255, 255, 255, 0.511);
-    margin: 50px auto 20px auto;
-    box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.288);
-    font-size:20px;
-}
