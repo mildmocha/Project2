@@ -9,4 +9,5 @@
   background: url("../img/Return.png") no-repeat;
   border: 0;
   top: 20px;  
+  cursor: pointer;
 }

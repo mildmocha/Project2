@@ -16,9 +16,9 @@ const LoginSub = () => {
 
   return (
     <>
-    <Back />
     <Wrap>
       <div className={classes.WrapInner} >
+    <Back />
      
       <LoginCurrent />
       <img className={classes.LoginBanner} src={BannerImg} />
