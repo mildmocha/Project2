@@ -67,7 +67,7 @@ const Board = () => {
       .then(data => {
         clearValue();
         const updatedPost = {
-          id: data.name, // Firebase에서 생성된 고유한 id 값
+          id: data.name, // Firebase id
           ...newPost
         };
         
