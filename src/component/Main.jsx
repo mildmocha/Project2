@@ -29,9 +29,10 @@ function Main() {
              <Box text="START" Menu />
            </Link>
           ) : (
-            <Link to="/LoginSub">
-              <Box text="START" Menu />
-            </Link>
+            <Link to="/StartQuiz">
+          
+             <Box text="START" Menu />
+           </Link>
           )}
        
         {isLogin ? (
@@ -39,8 +40,8 @@ function Main() {
             <Box text="BOARD" Menu />
             </Link>
           ) : (
-            <Link to="/LoginSub">
-             <Box text="BOARD" Menu />
+            <Link to="/Board">
+            <Box text="BOARD" Menu />
             </Link>
           )}
         {isLogin ?( 
