@@ -12,6 +12,7 @@ React Router를 처음 사용
  <br>
 netlify로 빌드, 배포
 
+‼현재 로그인 안해도 사용가능
 
 
 
